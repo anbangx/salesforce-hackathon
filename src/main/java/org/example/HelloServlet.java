@@ -38,11 +38,11 @@ public class HelloServlet extends HttpServlet
         stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
         stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
         ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-//
-//        String out = "Hello!\n";
-//        while (rs.next()) {
-//            out += "Read from DB: " + rs.getTimestamp("tick") + "\n";
-//        }
+
+        String out = "Hello!\n";
+        while (rs.next()) {
+            out += "Read from DB: " + rs.getTimestamp("tick") + "\n";
+        }
         // create
 //        String sql = "CREATE TABLE COMPANY " +
 //            "(ID INT PRIMARY KEY     NOT NULL," +
