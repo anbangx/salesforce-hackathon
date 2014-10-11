@@ -85,7 +85,7 @@ public class HelloServlet extends HttpServlet
 //           out += "SALARY = " + salary + "\n";
 //           out += "\n";
 //        }
-//        resp.getWriter().print(out);
+        resp.getWriter().print(out);
       } catch (Exception e) {
         resp.getWriter().print("There was an error: " + e.getMessage());
       }
