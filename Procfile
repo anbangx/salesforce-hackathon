@@ -1,1 +1,1 @@
-web:    mvn jetty:run -Djetty.port=$PORT -Djetty.daemon=false
+web:    bin/mvn jetty:run -Djetty.port=$PORT -Djetty.daemon=false
