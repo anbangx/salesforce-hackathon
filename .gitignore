@@ -3,5 +3,4 @@ target
 .metadata/
 .project
 .settings/
-mobile/platforms/android/ant-build/
-mobile/platforms/android/CordovaLib/ant-build/
+*.swp
