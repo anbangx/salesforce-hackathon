@@ -1,13 +1,19 @@
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.*;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
+
 import static javax.measure.unit.SI.KILOGRAM;
+
 import javax.measure.quantity.Mass;
+
 import org.jscience.physics.model.RelativisticModel;
 import org.jscience.physics.amount.Amount;
 
@@ -15,12 +21,15 @@ public class Main extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
-
-    if (req.getRequestURI().endsWith("/db")) {
-      showDatabase(req,resp);
-    } else {
-      showHome(req,resp);
-    }
+  	resp.setContentType("text/html");
+  	resp.setStatus(HttpServletResponse.SC_OK);
+  	resp.getWriter().println("<h1>Hello Servlet</h1>");
+  	resp.getWriter().println("session=" + req.getSession(true).getId());
+//    if (req.getRequestURI().endsWith("/db")) {
+//      showDatabase(req,resp);
+//    } else {
+//      showHome(req,resp);
+//    }
   }
 
   private void showHome(HttpServletRequest req, HttpServletResponse resp)
@@ -63,13 +72,13 @@ public class Main extends HttpServlet {
     return DriverManager.getConnection(dbUrl, username, password);
   }
 
-  public static void main(String[] args) throws Exception{
-    Server server = new Server(Integer.valueOf(System.getenv("PORT")));
-    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-    context.setContextPath("/");
-    server.setHandler(context);
-    context.addServlet(new ServletHolder(new Main()),"/*");
-    server.start();
-    server.join();
-  }
+//  public static void main(String[] args) throws Exception{
+//    Server server = new Server(Integer.valueOf(System.getenv("PORT")));
+//    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+//    context.setContextPath("/");
+//    server.setHandler(context);
+//    context.addServlet(new ServletHolder(new Main()),"/*");
+//    server.start();
+//    server.join();
+//  }
 }
