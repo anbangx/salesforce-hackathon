@@ -50,7 +50,7 @@ body {
 </nav>
 
 <div class="container-fluid">
-  <form role="form">
+  <form role="form" action="/hello">
     <div class="form-group">
       <label for="task">Task</label>
       <input type="text" class="form-control" id="task" placeholder="Enter Task">
@@ -71,7 +71,8 @@ body {
       <label for="time">Due Time</label>
       <input type="time" class="form-control" id="duetime" placeholder="Due Time">
     </div>
-    <a class="btn btn-default" href="/hello?<?=#task?>" role="button">Create</a>
+    <input type="submit" value="Submit">
+    <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
   <hr>
