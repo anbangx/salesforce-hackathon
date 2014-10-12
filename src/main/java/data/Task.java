@@ -4,17 +4,40 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Task {
+	public enum CATEGORY {
+		COMPANY,
+		FAMILY,
+		OTHER
+	}
+	
+	public enum PRIORITY {
+		HIGH,
+		MEDIUM,
+		LOW
+	}
 	
 	private int id;
 	private String event;
-	private String catogory;
-	private ArrayList<Date> startTimes;
+	private CATEGORY catogory;
+	private ArrayList<Long> startTimes;
 	private long duringTime;
-	private Date finalStartTime;
+	private long finalStartTime;
 	private boolean scheduled;
+	private PRIORITY priority;
 	
 	public Task(){
 		scheduled = false;
+	}
+	
+	public Task(int i, String e, CATEGORY c, ArrayList<Long> ds, long d, Long date, boolean s, PRIORITY p) {
+		this.id = i;
+		this.event = e;
+		this.catogory = c;
+		this.startTimes = ds;
+		this.duringTime = d;
+		this.finalStartTime = date;
+		this.scheduled = s;
+		this.priority = p;
 	}
 
 	public int getId() {
@@ -33,19 +56,19 @@ public class Task {
 		this.event = event;
 	}
 
-	public String getCatogory() {
+	public CATEGORY getCatogory() {
 		return catogory;
 	}
 
-	public void setCatogory(String catogory) {
+	public void setCatogory(CATEGORY catogory) {
 		this.catogory = catogory;
 	}
 
-	public ArrayList<Date> getStartTimes() {
+	public ArrayList<Long> getStartTimes() {
 		return startTimes;
 	}
 
-	public void setStartTimes(ArrayList<Date> startTimes) {
+	public void setStartTimes(ArrayList<Long> startTimes) {
 		this.startTimes = startTimes;
 	}
 
@@ -57,12 +80,20 @@ public class Task {
 		this.duringTime = duringTime;
 	}
 
-	public Date getFinalStartTime() {
+	public Long getFinalStartTime() {
 		return finalStartTime;
 	}
 
-	public void setFinalStartTime(Date finalStartTime) {
+	public void setFinalStartTime(Long finalStartTime) {
 		this.finalStartTime = finalStartTime;
+	}
+
+	public PRIORITY getPriority() {
+		return priority;
+	}
+
+	public void setPriority(PRIORITY priority) {
+		this.priority = priority;
 	}
 
 	public boolean isScheduled() {
