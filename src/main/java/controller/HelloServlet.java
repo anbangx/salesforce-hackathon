@@ -68,7 +68,7 @@ public class HelloServlet extends HttpServlet {
 		int rn = -10;
 		rn = taskManager.updateTasks(ls);
 		resp.getWriter().println("!!!! row num updated = " + rn);
-		tasks = taskManager.readTaskTable();
+		tasks = taskManager.readAllTasks();
 		for(Task task : tasks) {
 			resp.getWriter().println(task.toString());
 		}		
