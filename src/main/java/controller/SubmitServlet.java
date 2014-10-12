@@ -63,7 +63,7 @@ public class SubmitServlet extends HttpServlet
         }
 
         //Store task into db
-        Task newTask = new Task(1, event, category, intervals, null, false, priority);
+        Task newTask = new Task(1, event, category, intervals, new Interval(0,0), false, priority);
 
         TaskTableManager dbManager = TaskTableManager.getInstance();
         dbManager.createTable();
