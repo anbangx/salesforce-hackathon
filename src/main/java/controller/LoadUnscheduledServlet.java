@@ -34,12 +34,18 @@ public class LoadUnscheduledServlet extends HttpServlet
                     " </div>" +
                     "  <div class=\"col-xs-6 col-md-6\">" +
                     "Priotity " + t.getPriority() +
+                    " </div>" +
+                    "  <div class=\"panel-body\">\n" +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    t.getCategory() +
+                    " </div>" +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    "Priority: " + t.getPriority() +
                     " </div>";
             for (Interval interval : intervals) {
                 Date start = new Date(interval.start);
                 Date end = new Date(interval.end);
                 listhtml += "  </div>\n" +
-                        "  <div class=\"panel-body\">\n" +
                         "  <div class=\"col-xs-6 col-md-6\">" +
                         "start: " + formatter.format(start) +
                         " </div>" +
@@ -48,7 +54,7 @@ public class LoadUnscheduledServlet extends HttpServlet
                         " </div>" +
                         "  </div>\n";
             }
-            listhtml += "</div>";
+            listhtml += "</div></div>";
 
         }
 
