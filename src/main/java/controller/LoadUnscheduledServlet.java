@@ -1,5 +1,6 @@
 package controller;
 
+import datamodel.Interval;
 import datamodel.Task;
 import tablemanager.TaskTableManager;
 
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LoadUnscheduledServlet extends HttpServlet
 {
@@ -19,13 +22,28 @@ public class LoadUnscheduledServlet extends HttpServlet
 
         ArrayList<Task> tasks = dbManager.readUnscheduledTasks();
 
-        for (int i = 0; i < tasks.size(); i++) {
-            listhtml += "<p> " + tasks.get(i).getEvent() + " </p>"
-                     + "<hr>";
-        }
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy hh:mma");
 
-        response.getWriter().println(tasks.size());
-        response.getWriter().println(listhtml);
+        for (Task t : tasks) {
+            Interval interval = t.getTodoIntervals().get(0);
+            Date start = new Date(interval.start);
+            Date end = new Date(interval.end);
+
+            listhtml += " <div class=\"panel panel-default\">\n" +
+                    "  <div class=\"panel-heading\">\n" +
+                    "    <h3 class=\"panel-title\">" +  t.getEvent() +"</h3>\n" +
+                    "  </div>\n" +
+                    "  <div class=\"panel-body\">\n" +
+                    "  <div class=\"col-md-6\">" +
+                    formatter.format(start) +
+                    " </div>" +
+                    "  <div class=\"col-md-6\">" +
+                    formatter.format(end) +
+                    " </div>" +
+                    "  </div>\n" +
+                    "</div>  ";
+
+        }
 
         request.setAttribute("unscheduledtasks", listhtml);
         request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
