@@ -48,7 +48,7 @@ body {
 
 <div class="container-fluid">
 
-  ${Scheduledtasks}
+  ${scheduledtasks}
 
   <hr>
 
