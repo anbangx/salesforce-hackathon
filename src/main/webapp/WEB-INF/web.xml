@@ -21,15 +21,6 @@
         <servlet-name>EchoServletExample</servlet-name>
         <url-pattern>/echo</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/echo</url-pattern>
-    </servlet-mapping>
-
-    <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
 
     <servlet>
         <servlet-name>LoadUnscheduled</servlet-name>
