@@ -24,6 +24,7 @@ body {
 </head>
 
 <body>
+${message}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,10 +51,9 @@ body {
 
 <div class="container-fluid">
 
-    <div class="jumbotron">
-        <h1>Task Scheduler</h1>
-        <p>Add your tasks and then click schedule to automatically plan your day</p>
-    </div>
+  <p>
+  Task 1
+  </p>
 
   <hr>
 
