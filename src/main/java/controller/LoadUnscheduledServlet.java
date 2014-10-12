@@ -29,12 +29,7 @@ public class LoadUnscheduledServlet extends HttpServlet
 
             listhtml += " <div class=\"panel panel-default\">\n" +
                     "  <div class=\"panel-heading\">\n" +
-                    "  <div class=\"col-xs-6 col-md-6\">" +
                     t.getEvent() +
-                    " </div>" +
-                    "  <div class=\"col-xs-6 col-md-6\">" +
-                    "Priotity " + t.getPriority() +
-                    " </div>" +
                     "  <div class=\"panel-body\">\n" +
                     "  <div class=\"col-xs-6 col-md-6\">" +
                     t.getCategory() +
@@ -45,14 +40,13 @@ public class LoadUnscheduledServlet extends HttpServlet
             for (Interval interval : intervals) {
                 Date start = new Date(interval.start);
                 Date end = new Date(interval.end);
-                listhtml += "  </div>\n" +
+                listhtml +=
                         "  <div class=\"col-xs-6 col-md-6\">" +
                         "start: " + formatter.format(start) +
                         " </div>" +
                         "  <div class=\"col-xs-6 col-md-6\">" +
                         "end: " + formatter.format(end) +
-                        " </div>" +
-                        "  </div>\n";
+                        " </div>";
             }
             listhtml += "</div></div>";
 
