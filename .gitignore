@@ -4,6 +4,5 @@ target
 .project
 .settings/
 vendor/
-vendor
 *.swp
 *.iml
