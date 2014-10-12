@@ -1,6 +1,5 @@
 package data;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -10,21 +9,27 @@ public class Task {
 		FAMILY,
 		OTHER
 	}
-
+	
+//	public enum PRIORITY {
+//		HIGH,
+//		MEDIUM,
+//		LOW
+//	}
+	
 	private int id;
 	private String event;
 	private CATEGORY catogory;
-	private ArrayList<Date> startTimes;
+	private ArrayList<Long> startTimes;
 	private long duringTime;
-	private Date finalStartTime;
-	private int priority;
+	private long finalStartTime;
 	private boolean scheduled;
+	private int priority;
 	
 	public Task(){
 		scheduled = false;
 	}
 	
-	public Task(int i, String e, CATEGORY c, ArrayList<Date> ds, long d, Date date, boolean s) {
+	public Task(int i, String e, CATEGORY c, ArrayList<Long> ds, long d, Long date, boolean s, int p) {
 		this.id = i;
 		this.event = e;
 		this.catogory = c;
@@ -90,11 +95,11 @@ public class Task {
 		this.catogory = catogory;
 	}
 
-	public ArrayList<Date> getStartTimes() {
+	public ArrayList<Long> getStartTimes() {
 		return startTimes;
 	}
 
-	public void setStartTimes(ArrayList<Date> startTimes) {
+	public void setStartTimes(ArrayList<Long> startTimes) {
 		this.startTimes = startTimes;
 	}
 
@@ -106,11 +111,11 @@ public class Task {
 		this.duringTime = duringTime;
 	}
 
-	public Date getFinalStartTime() {
+	public Long getFinalStartTime() {
 		return finalStartTime;
 	}
 
-	public void setFinalStartTime(Date finalStartTime) {
+	public void setFinalStartTime(Long finalStartTime) {
 		this.finalStartTime = finalStartTime;
 	}
 
