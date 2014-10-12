@@ -18,7 +18,7 @@ import datamodel.Task;
 import datamodel.Task.CATEGORY;
 
 public class TaskTableManager {
-	private static final String TASK_TABLE_NAME = "TASK1";
+	private static final String TASK_TABLE_NAME = "TASK";
 	private static TaskTableManager _instance = null;
 	
 	public static TaskTableManager getInstance() {
