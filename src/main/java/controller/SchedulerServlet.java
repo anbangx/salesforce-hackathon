@@ -22,8 +22,13 @@ public class SchedulerServlet extends HttpServlet
         Scheduler.init(scheduledTasks);
         ArrayList<Task> resultTasks = Scheduler.schedule(unscheduledTasks);
 
+        for (Task t : resultTasks) {
+            response.getWriter().println(t.getEvent());
+        }
+        response.getWriter().println(resultTasks.size());
+
         dbManager.updateTasks(resultTasks);
 
-        request.getRequestDispatcher("/scheduled").forward(request, response);
+        //request.getRequestDispatcher("/scheduled").forward(request, response);
     }
 }
