@@ -116,8 +116,20 @@ public class TaskTableManager {
 		return r;
 
 	}
-	
-	public ArrayList<Task> readTaskTable() {
+
+    public ArrayList<Task> readAllTasks() {
+        return filterTaskTable("");
+    }
+
+    public ArrayList<Task> readScheduledTasks() {
+        return filterTaskTable("WHERE Scheduled=true");
+    }
+
+    public ArrayList<Task> readUnscheduledTasks() {
+        return filterTaskTable("WHERE Scheduled=false");
+    }
+
+	private ArrayList<Task> filterTaskTable(String filter) {
 		Connection conn = null;
 		Statement stmt = null;
 		ArrayList<Task> tasks = new ArrayList<Task>();
@@ -125,7 +137,7 @@ public class TaskTableManager {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			
-			String sql = "SELECT * FROM TASK;";
+			String sql = "SELECT * FROM TASK " + filter + ";";
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) { //(ID,EVENT,Catogory,ToDoIntervals,ScheduledInterval,Scheduled,Priority)
