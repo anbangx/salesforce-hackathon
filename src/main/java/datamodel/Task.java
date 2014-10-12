@@ -25,19 +25,19 @@ public class Task {
 	private boolean scheduled;
 	private int priority;
 	
-	@Override
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("ID = " + id + "\n");
-		sb.append("EVENT = " + event + "\n");
-		sb.append("CATEGORY = " + category + "\n");
-		sb.append("todoIntervals = " + todoIntervals.toString() + "\n");
-		sb.append("scheduledInterval = " + scheduledInterval.toString() + "\n");
-		sb.append("scheduled = " + scheduled + "\n");
-		sb.append("priority = " + priority + "\n");
-		
-		return sb.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuffer sb = new StringBuffer();
+//		sb.append("ID = " + id + "\n");
+//		sb.append("EVENT = " + event + "\n");
+//		sb.append("CATEGORY = " + category + "\n");
+//		sb.append("todoIntervals = " + todoIntervals.toString() + "\n");
+//		sb.append("scheduledInterval = " + scheduledInterval.toString() + "\n");
+//		sb.append("scheduled = " + scheduled + "\n");
+//		sb.append("priority = " + priority + "\n");
+//		
+//		return sb.toString();
+//	}
 	
 	public Task(){
 		scheduled = false;
@@ -96,6 +96,14 @@ public class Task {
 			}
 			
 		};
+	}
+	
+	/**
+	 * here assume the during time for the same task is the same
+	 * @return
+	 */
+	public long getDuringTime(){
+		return todoIntervals.get(0).end - todoIntervals.get(0).start;
 	}
 	
 	public static Comparator<Task> startTimeComparator = new Comparator<Task>() {

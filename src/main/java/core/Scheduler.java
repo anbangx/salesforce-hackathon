@@ -73,7 +73,7 @@ public class Scheduler {
 						partitionByStartTime.remove(task);
 						continue;
 					} 
-					// 4. check if this task can by scheduled in current calendar
+					// 4. check if this task can be scheduled in current calendar
 					if(!checkIfConflict(startTime, startTime + task.getDuringTime(), Scheduler.scheduledTasks)){
 						// 5.if not conflict, schedule todoTask to scheduledTask
 						task.setScheduled(true);
