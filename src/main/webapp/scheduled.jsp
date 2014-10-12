@@ -49,7 +49,7 @@ body {
 <div class="container-fluid">
 
   ${Scheduledtasks}
-
+  <input id="input1" type="text" value="@gray-light" data-var="@label-default-bg" class="form-control">
   <hr>
 
   <footer>

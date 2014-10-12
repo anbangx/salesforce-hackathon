@@ -1,8 +1,12 @@
 package controller;
 
 import java.io.*;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import org.json.JSONObject;
+
 import java.util.*;
  
 public class EchoServlet extends HttpServlet {
@@ -127,6 +131,11 @@ public class EchoServlet extends HttpServlet {
    public void doPost(HttpServletRequest request, HttpServletResponse response)
                throws IOException, ServletException {
       doGet(request, response);
+//  	 PrintWriter out= response.getWriter();  
+//     JSONObject json = new JSONObject();  
+//     json.put("name", "Sameera Jayasekara");  
+//     json.put("email", "codesstore@blogspot.com");  
+//     out.print(json);  
    }
  
    // Filter the string for special HTML characters to prevent

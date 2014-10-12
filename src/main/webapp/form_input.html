@@ -3,12 +3,33 @@
 <head>
   <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
   <title>User Input Form</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    $(document).ready(function(){   
+            $('#getData').click(function(){  
+                $.ajax({  
+                    url:'EchoServlet',  
+                    type:'post',  
+                    dataType: 'json',  
+                    success: function(data) {  
+                        $('#name').val(data.name);  
+                        $('#email').val(data.email);  
+                    }  
+                });  
+            });  
+    });  
+  </script>  
 </head>
  
 <body>
 <h2>User Input Form</h2>
 <form method="get" action="echo">
   <fieldset>
+    Name:<input type="text" id="name"/><br/>  
+    Email:<input type="text" id="email"/>  
+      
+    <input type="button" id="getData" value="Get Data"/>  
+
+
     <legend>Personal Particular</legend>
     Name: <input type="text" name="username" /><br /><br />
     Password: <input type="password" name="password" /><br /><br />
