@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,8 +40,8 @@ body {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Tasks</a></li>
-        <li class="active"><a href="#">Create Task</a></li>
+        <li class="active"><a href="#">Tasks</a></li>
+        <li><a href="createtask.html">Create Task</a></li>
         <li><a href="#">Schedule Tasks</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -50,22 +49,10 @@ body {
 </nav>
 
 <div class="container-fluid">
-  <form role="form" action="/hello" method="get">
-    <div class="form-group">
-      <label for="task">Task</label>
-      <input type="text" class="form-control" id="task" placeholder="Enter Task" name="task">
-    </div>
-    <div class="form-group">
-      <label for="datetime">Start Date</label>
-      <input type="date" class="form-control" id="startdate" placeholder="Start Date" name="startdate">
-    </div>
-    <div class="form-group">
-      <label for="datetime">Due Date</label>
-      <input type="date" class="form-control" id="duedate" placeholder="Due Date" name="duedate">
-    </div>
-    <input type="submit" value="Submit">
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+
+  <p>
+  Task 1
+  </p>
 
   <hr>
 
@@ -81,6 +68,7 @@ body {
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <!-- <script src="js/jquery-1.11.1.min.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="js/tasks.js"></script>
 
 </body>
 </html>

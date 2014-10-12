@@ -1,6 +1,7 @@
 var ct = {
 	loadPage: function()
 	{
+
 	},
 }
 

@@ -3,4 +3,6 @@ target
 .metadata/
 .project
 .settings/
+vendor
 *.swp
+*.iml

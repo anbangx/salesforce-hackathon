@@ -8,8 +8,16 @@
     <servlet-name>Hello</servlet-name>
     <servlet-class>org.example.HelloServlet</servlet-class>
   </servlet>
+    <servlet>
+        <servlet-name>LoadTasks</servlet-name>
+        <servlet-class>org.example.LoadTasksServlet</servlet-class>
+    </servlet>
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
     <url-pattern>/hello/*</url-pattern>
   </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadTasks</servlet-name>
+        <url-pattern>/loadTasks/*</url-pattern>
+    </servlet-mapping>
 </web-app>
