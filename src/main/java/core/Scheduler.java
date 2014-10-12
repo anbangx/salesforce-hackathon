@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import javax.measure.quantity.Duration;
 
-import data.Interval;
-import data.Task;
+import datamodel.Interval;
+import datamodel.Task;
 
 public class Scheduler {
 	

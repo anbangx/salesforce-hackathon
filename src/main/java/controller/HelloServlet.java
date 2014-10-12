@@ -1,4 +1,4 @@
-package org.example;
+package controller;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,9 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import data.Task;
-import data.Task.CATEGORY;
-import data.Task.PRIORITY;
+import datamodel.Task;
+import datamodel.Task.CATEGORY;
 
 public class HelloServlet extends HttpServlet {
 
@@ -132,7 +131,7 @@ public class HelloServlet extends HttpServlet {
 			
 			createTasksTable();
 			StringBuffer sb = new StringBuffer();
-			Task t = new Task(100, "HIT", CATEGORY.COMPANY, new ArrayList<Long>(), 1000L, 2313424L, true, PRIORITY.MEDIUM);
+			Task t = new Task(100, "HIT", CATEGORY.COMPANY, new ArrayList<Long>(), 1000L, 2313424L, true, 2);
 			int num  = flushTaskToDB(t);
 			
 			sb.append("\n" + " !!!insert " + num + " rows here" + "\n");
@@ -199,7 +198,7 @@ public class HelloServlet extends HttpServlet {
 							+ ", '"
 							+ task.isScheduled()
 							+ "' ,'"
-							+ task.getPriority().name()
+							+ task.getPriority()
 							+ "');";
 				r = pStmt.executeUpdate(sql);
 		} catch (SQLException e) {

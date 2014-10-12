@@ -6,11 +6,11 @@
    version="2.5">
   <servlet>
     <servlet-name>Hello</servlet-name>
-    <servlet-class>org.example.HelloServlet</servlet-class>
+    <servlet-class>controller.HelloServlet</servlet-class>
   </servlet>
   <servlet>
       <servlet-name>EchoServletExample</servlet-name>
-      <servlet-class>org.example.EchoServlet</servlet-class>
+      <servlet-class>controller.EchoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Hello</servlet-name>
@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>LoadUnscheduled</servlet-name>
-        <servlet-class>org.example.LoadUnscheduledServlet</servlet-class>
+        <servlet-class>controller.LoadUnscheduledServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadUnscheduled</servlet-name>

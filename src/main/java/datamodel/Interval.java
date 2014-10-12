@@ -1,4 +1,4 @@
-package data;
+package datamodel;
 
 public class Interval {
 	

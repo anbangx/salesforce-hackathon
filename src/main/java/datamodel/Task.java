@@ -1,4 +1,4 @@
-package data;
+package datamodel;
 
 import java.util.ArrayList;
 import java.util.Comparator;
