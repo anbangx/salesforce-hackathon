@@ -41,6 +41,7 @@ public class Task {
 	
 	public Task(){
 		scheduled = false;
+		priority = 1;
 	}
 	
 	public Task(int i, String e, CATEGORY c, ArrayList<Interval> ds, Interval in, boolean s, int p) {

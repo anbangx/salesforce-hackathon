@@ -19,7 +19,7 @@ public class Scheduler {
 	
 	public static HashMap<Integer, ArrayList<Task>> partitionTaskByPriority(ArrayList<Task> todoTasks){
 		HashMap<Integer, ArrayList<Task>> paritions = new HashMap<Integer, ArrayList<Task>>();
-		for(int i = 0; i < 3; i++){
+		for(int i = 1; i <= 3; i++){
 			ArrayList<Task> partition = new ArrayList<Task>();
 			paritions.put(i, partition);
 		}
@@ -48,8 +48,8 @@ public class Scheduler {
 	public static boolean checkIfConflict(long startTime, long endTime, ArrayList<Task> scheduledTasks){
 		for(Task scheduledTask : scheduledTasks){
 			Interval interval = scheduledTask.getScheduledInterval();
-			if((startTime >= interval.start && startTime <= interval.end)
-					|| (endTime >= interval.start && endTime <= interval.end))
+			if((startTime >= interval.start && startTime < interval.end)
+					|| (endTime > interval.start && endTime <= interval.end))
 				return true;
 		}
 		return false;
@@ -61,7 +61,7 @@ public class Scheduler {
 		HashMap<Integer, ArrayList<Task>> partitionsByPriority = partitionTaskByPriority(todoTasks);
 		
 		// 2. for tasks with the same priority, partition todoTask by startTime
-		for(int i = 2; i >= 0; i--){
+		for(int i = 3; i >= 1; i--){
 			ArrayList<Task> paritionByPriority = partitionsByPriority.get(i);
 			TreeMap<Long, ArrayList<Task>> partitionsByStartTime = partitionTaskByStartTime(paritionByPriority);
 			for(Long startTime : partitionsByStartTime.keySet()){
@@ -70,7 +70,6 @@ public class Scheduler {
 				Collections.sort(partitionByStartTime, Task.Comparators.DuringTime);
 				for(Task task : partitionByStartTime){
 					if(task.isScheduled()){
-						partitionByStartTime.remove(task);
 						continue;
 					} 
 					// 4. check if this task can be scheduled in current calendar
@@ -79,6 +78,7 @@ public class Scheduler {
 						task.setScheduled(true);
 						task.setScheduledInterval(new Interval(startTime, startTime + task.getDuringTime()));
 						scheduledTaskThisTime.add(task);
+						scheduledTasks.add(task);
 						todoTasks.remove(task);
 					}
 				}
@@ -87,16 +87,17 @@ public class Scheduler {
 		return scheduledTaskThisTime;
 	}
 	
-	public static void main(String [ ] args){
-		// Test1
+	public static void test1(){
+		System.out.println("Test1 - simple test.....");
+		// Test1 - simple test
 		Task task1 = new Task();
 		ArrayList<Interval> intervals1 = new ArrayList<Interval>();
-		intervals1.add(new Interval(0, 1));
+		intervals1.add(new Interval(0, 2));
 		task1.setTodoIntervals(intervals1);
 		
 		Task task2 = new Task();
 		ArrayList<Interval> intervals2 = new ArrayList<Interval>();
-		intervals2.add(new Interval(2, 3));
+		intervals2.add(new Interval(3, 5));
 		task2.setTodoIntervals(intervals2);
 		
 		Task task3 = new Task();
@@ -113,5 +114,125 @@ public class Scheduler {
 		ArrayList<Task> returnScheduledTasks = Scheduler.schedule(todoTasks);
 		System.out.println("returnScheduledTasks: " + returnScheduledTasks);
 		System.out.println("todoTasks: " + todoTasks);
+			
+	}
+	
+	public static void test2(){
+		System.out.println("Test2 - test priority.....");
+		// Test2 - test priority
+		Task task1 = new Task();
+		ArrayList<Interval> intervals1 = new ArrayList<Interval>();
+		intervals1.add(new Interval(0, 2));
+		task1.setTodoIntervals(intervals1);
+		task1.setPriority(1);
+		
+		Task task2 = new Task();
+		ArrayList<Interval> intervals2 = new ArrayList<Interval>();
+		intervals2.add(new Interval(2, 4));
+		task2.setTodoIntervals(intervals2);
+		task2.setPriority(3);
+		
+		Task task3 = new Task();
+		ArrayList<Interval> intervals3 = new ArrayList<Interval>();
+		intervals3.add(new Interval(1, 3));
+		task3.setTodoIntervals(intervals3);
+		task3.setPriority(2);
+		
+		ArrayList<Task> todoTasks = new ArrayList<Task>();
+		todoTasks.add(task1);
+		todoTasks.add(task2);
+		todoTasks.add(task3);
+		
+		Scheduler.init(new ArrayList<Task>());
+		ArrayList<Task> returnScheduledTasks = Scheduler.schedule(todoTasks);
+		System.out.println("returnScheduledTasks: " + returnScheduledTasks);
+		System.out.println("todoTasks: " + todoTasks);
+	}
+	
+	public static void test3(){
+		System.out.println("Test3 - test startTime.....");
+		// Test3 - test startTime
+		Task task1 = new Task();
+		ArrayList<Interval> intervals1 = new ArrayList<Interval>();
+		intervals1.add(new Interval(0, 2));
+		task1.setTodoIntervals(intervals1);
+		task1.setPriority(1);
+		
+		Task task2 = new Task();
+		ArrayList<Interval> intervals2 = new ArrayList<Interval>();
+		intervals2.add(new Interval(1, 3));
+		task2.setTodoIntervals(intervals2);
+		task2.setPriority(1);
+		
+		ArrayList<Task> todoTasks = new ArrayList<Task>();
+		todoTasks.add(task1);
+		todoTasks.add(task2);
+		
+		Scheduler.init(new ArrayList<Task>());
+		ArrayList<Task> returnScheduledTasks = Scheduler.schedule(todoTasks);
+		System.out.println("returnScheduledTasks: " + returnScheduledTasks);
+		System.out.println("todoTasks: " + todoTasks);
+	}
+	
+	public static void test4(){
+		System.out.println("Test4 - test duringTime.....");
+		// Test4 - test duringTime
+		Task task1 = new Task();
+		ArrayList<Interval> intervals1 = new ArrayList<Interval>();
+		intervals1.add(new Interval(0, 2));
+		task1.setTodoIntervals(intervals1);
+		task1.setPriority(1);
+		
+		Task task2 = new Task();
+		ArrayList<Interval> intervals2 = new ArrayList<Interval>();
+		intervals2.add(new Interval(0, 3));
+		task2.setTodoIntervals(intervals2);
+		task2.setPriority(1);
+		
+		ArrayList<Task> todoTasks = new ArrayList<Task>();
+		todoTasks.add(task1);
+		todoTasks.add(task2);
+		
+		Scheduler.init(new ArrayList<Task>());
+		ArrayList<Task> returnScheduledTasks = Scheduler.schedule(todoTasks);
+		System.out.println("returnScheduledTasks: " + returnScheduledTasks);
+		System.out.println("todoTasks: " + todoTasks);
+	}
+	
+	public static void test5(){
+		System.out.println("Test5 - test multiple time slots in one task.....");
+		// Test5 - test priority
+		Task task1 = new Task();
+		ArrayList<Interval> intervals1 = new ArrayList<Interval>();
+		intervals1.add(new Interval(0, 1));
+		intervals1.add(new Interval(1, 2));
+		intervals1.add(new Interval(2, 3));
+		task1.setTodoIntervals(intervals1);
+		task1.setPriority(1);
+		
+		Task task2 = new Task();
+		ArrayList<Interval> intervals2 = new ArrayList<Interval>();
+		intervals2.add(new Interval(0, 2));
+		intervals2.add(new Interval(2, 4));
+		intervals2.add(new Interval(4, 6));
+		task2.setTodoIntervals(intervals2);
+		task2.setPriority(2);
+		
+		ArrayList<Task> todoTasks = new ArrayList<Task>();
+		todoTasks.add(task1);
+		todoTasks.add(task2);
+		
+		Scheduler.init(new ArrayList<Task>());
+		ArrayList<Task> returnScheduledTasks = Scheduler.schedule(todoTasks);
+		System.out.println("returnScheduledTasks: " + returnScheduledTasks);
+		System.out.println("todoTasks: " + todoTasks);
+	}
+	
+	public static void main(String [ ] args){
+		test1();
+		test2();
+		test3();
+		test4();
+		test5();
 	}
 }
