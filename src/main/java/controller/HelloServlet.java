@@ -52,7 +52,7 @@ public class HelloServlet extends HttpServlet {
 		taskManager.writeTaskToDB(t1);
 		taskManager.writeTaskToDB(t2);
 		
-		ArrayList<Task> tasks = taskManager.readTaskTable();
+		ArrayList<Task> tasks = taskManager.readAllTasks();
 		for(Task task : tasks) {
 			//System.out.println(task.toString());
 			resp.getWriter().println(task.toString());
