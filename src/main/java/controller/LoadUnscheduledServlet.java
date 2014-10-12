@@ -30,6 +30,7 @@ public class LoadUnscheduledServlet extends HttpServlet
             listhtml += " <div class=\"panel panel-default\">\n" +
                     "  <div class=\"panel-heading\">\n" +
                     t.getEvent() +
+                    "  </div>" +
                     "  <div class=\"panel-body\">\n" +
                     "  <div class=\"col-xs-6 col-md-6\">" +
                     t.getCategory() +
