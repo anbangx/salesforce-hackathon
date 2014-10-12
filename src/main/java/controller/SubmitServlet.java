@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class SubmitServlet extends HttpServlet
 {
@@ -63,7 +64,8 @@ public class SubmitServlet extends HttpServlet
         }
 
         //Store task into db
-        Task newTask = new Task(1, event, category, intervals, new Interval(0,0), false, priority);
+        Random rng = new Random();
+        Task newTask = new Task(rng.nextInt(), event, category, intervals, new Interval(0,0), false, priority);
 
         TaskTableManager dbManager = TaskTableManager.getInstance();
         dbManager.createTable();
