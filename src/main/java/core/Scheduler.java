@@ -10,9 +10,9 @@ import datamodel.Task;
 
 public class Scheduler {
 	
-	public static ArrayList<Task> scheduledTasks;
+	public static ArrayList<Task> scheduledTasks = null;
 	
-	public Scheduler(ArrayList<Task> scheduledTasks){
+	public static void init(ArrayList<Task> scheduledTasks){
 		Scheduler.scheduledTasks = scheduledTasks;
 		Collections.sort(Scheduler.scheduledTasks, Task.Comparators.ScheduledTaskStartTime);
 	}
@@ -73,7 +73,7 @@ public class Scheduler {
 						partitionByStartTime.remove(task);
 						continue;
 					} 
-					// 4. check if this task can by scheduled in current calendar
+					// 4. check if this task can be scheduled in current calendar
 					if(!checkIfConflict(startTime, startTime + task.getDuringTime(), Scheduler.scheduledTasks)){
 						// 5.if not conflict, schedule todoTask to scheduledTask
 						task.setScheduled(true);
@@ -88,6 +88,30 @@ public class Scheduler {
 	}
 	
 	public static void main(String [ ] args){
+		// Test1
+		Task task1 = new Task();
+		ArrayList<Interval> intervals1 = new ArrayList<Interval>();
+		intervals1.add(new Interval(0, 1));
+		task1.setTodoIntervals(intervals1);
 		
+		Task task2 = new Task();
+		ArrayList<Interval> intervals2 = new ArrayList<Interval>();
+		intervals2.add(new Interval(2, 3));
+		task2.setTodoIntervals(intervals2);
+		
+		Task task3 = new Task();
+		ArrayList<Interval> intervals3 = new ArrayList<Interval>();
+		intervals3.add(new Interval(5, 9));
+		task3.setTodoIntervals(intervals3);
+		
+		ArrayList<Task> todoTasks = new ArrayList<Task>();
+		todoTasks.add(task1);
+		todoTasks.add(task2);
+		todoTasks.add(task3);
+		
+		Scheduler.init(new ArrayList<Task>());
+		ArrayList<Task> returnScheduledTasks = Scheduler.schedule(todoTasks);
+		System.out.println("returnScheduledTasks: " + returnScheduledTasks);
+		System.out.println("todoTasks: " + todoTasks);
 	}
 }
