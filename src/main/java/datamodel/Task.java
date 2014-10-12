@@ -40,6 +40,10 @@ public class Task {
 		this.priority = p;
 	}
 	
+	public String toString(){
+		return scheduled + "; interval: " + scheduledInterval;
+	}
+	
 	public static class Comparators {
 		public static Comparator<Task> ScheduledTaskStartTime = new Comparator<Task>() {
 			
