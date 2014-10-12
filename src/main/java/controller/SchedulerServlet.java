@@ -25,10 +25,10 @@ public class SchedulerServlet extends HttpServlet
         for (Task t : resultTasks) {
             response.getWriter().println(t.getEvent());
         }
-        response.getWriter().println(resultTasks.size());
+        //response.getWriter().println(resultTasks.size());
 
         dbManager.updateTasks(resultTasks);
 
-        //request.getRequestDispatcher("/scheduled").forward(request, response);
+        request.getRequestDispatcher("/scheduled").forward(request, response);
     }
 }
