@@ -100,7 +100,7 @@ public class TaskTableManager {
 							+ "' ,"
 							+ task.getPriority()
 							+ ");";
-				r = pStmt.executeUpdate(sql);
+            r = pStmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
