@@ -66,6 +66,7 @@ public class SubmitServlet extends HttpServlet
         Task newTask = new Task(1, event, category, intervals, null, false, priority);
 
         TaskTableManager dbManager = TaskTableManager.getInstance();
+        dbManager.createTable();
         dbManager.writeTaskToDB(newTask);
 
         String message = "Hello World";
