@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <web-app
-   xmlns="http://java.sun.com/xml/ns/javaee"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-   version="2.5">
-  <servlet>
-    <servlet-name>Hello</servlet-name>
-    <servlet-class>controller.HelloServlet</servlet-class>
-  </servlet>
-  <servlet>
-      <servlet-name>EchoServletExample</servlet-name>
-      <servlet-class>controller.EchoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Hello</servlet-name>
-    <url-pattern>/hello/*</url-pattern>
-  </servlet-mapping>
-   <servlet-mapping>
-      <servlet-name>EchoServletExample</servlet-name>
-      <url-pattern>/echo</url-pattern>
-   </servlet-mapping>
-  
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+        version="2.5">
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>controller.HelloServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/hello/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EchoServletExample</servlet-name>
+        <servlet-class>controller.EchoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EchoServletExample</servlet-name>
+        <url-pattern>/echo</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
         <url-pattern>/hello</url-pattern>
@@ -33,6 +34,24 @@
     <servlet-mapping>
         <servlet-name>LoadUnscheduled</servlet-name>
         <url-pattern>/unscheduled</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoadScheduled</servlet-name>
+        <servlet-class>controller.LoadScheduledServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadScheduled</servlet-name>
+        <url-pattern>/scheduled</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Scheduler</servlet-name>
+        <servlet-class>controller.SchedulerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Scheduler</servlet-name>
+        <url-pattern>/scheduler</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
