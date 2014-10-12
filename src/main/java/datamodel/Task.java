@@ -40,38 +40,48 @@ public class Task {
 		this.priority = p;
 	}
 	
-	public static Comparator<Task> PriorityComparator = new Comparator<Task>() {
+	public static class Comparators {
+		public static Comparator<Task> ScheduledTaskStartTime = new Comparator<Task>() {
+			
+			public int compare(Task task1, Task task2) {
+				long startTime1 = task1.getScheduledInterval().start;
+				long startTime2 = task2.getScheduledInterval().start;
+				if(startTime1 > startTime2)
+					return 1;
+				else if(startTime1 < startTime2)
+					return -1;
+				else
+					return 0;
+			}
+			
+		};
 		
-		public int compare(Task task1, Task task2) {
-			//ascending order
-			return task1.getPriority() - task2.getPriority();
-		}
+		public static Comparator<Task> Priority = new Comparator<Task>() {
+			
+			public int compare(Task task1, Task task2) {
+				//ascending order
+				return task1.getPriority() - task2.getPriority();
+			}
+			
+		};
 		
-	};
+		public static Comparator<Task> DuringTime = new Comparator<Task>() {
+			
+			public int compare(Task task1, Task task2) {
+				long duringTime1 = task1.getDuringTime();
+				long duringTime2 = task2.getDuringTime();
+				if(duringTime1 > duringTime2)
+					return 1;
+				else if(duringTime1 < duringTime2)
+					return -1;
+				else
+					return 0;
+			}
+			
+		};
+	}
 	
-	public static Comparator<Task> DuringTimeComparator = new Comparator<Task>() {
-		
-		public int compare(Task task1, Task task2) {
-			long duringTime1 = task1.getDuringTime();
-			long duringTime2 = task2.getDuringTime();
-			if(duringTime1 > duringTime2)
-				return 1;
-			else if(duringTime1 < duringTime2)
-				return -1;
-			else
-				return 0;
-		}
-		
-	};
 	
-	public static Comparator<Task> startTimeComparator = new Comparator<Task>() {
-		
-		public int compare(Task task1, Task task2) {
-			return 0;
-		}
-		
-	};
-
 	public int getId() {
 		return id;
 	}
