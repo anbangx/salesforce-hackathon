@@ -86,4 +86,8 @@ public class Scheduler {
 		}
 		return scheduledTaskThisTime;
 	}
+	
+	public static void main(String [ ] args){
+		
+	}
 }
