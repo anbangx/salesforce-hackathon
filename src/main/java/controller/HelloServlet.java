@@ -50,7 +50,7 @@ public class HelloServlet extends HttpServlet {
 		Task t = new Task(101, "SMS", CATEGORY.FAMILY, ds, new Interval(1,3), true, 1);
 		taskManager.writeTaskToDB(t);
 		
-		ArrayList<Task> tasks = taskManager.readTaskTable();
+		ArrayList<Task> tasks = taskManager.readAllTasks();
 		for(Task task : tasks) {
 			//System.out.println(task.toString());
 			resp.getWriter().println(task.toString());
