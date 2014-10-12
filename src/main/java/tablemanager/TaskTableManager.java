@@ -43,6 +43,31 @@ public class TaskTableManager {
 		return DriverManager.getConnection(dbUrl, username, password);
 	}
 	
+	public void dropTable() {
+		Connection connection = null;
+		Statement stmt = null;
+		
+		try {
+			connection = getConnection();
+			stmt = connection.createStatement();
+			
+			String sql = "DROP TABLE IF EXISTS " + TASK_TABLE_NAME + ";";
+			stmt.execute(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public void createTable()  {
 		Connection connection = null;
 		Statement stmt = null;
@@ -56,7 +81,7 @@ public class TaskTableManager {
 			stmt.execute(sql);
 			
 			sql = "CREATE TABLE " + TASK_TABLE_NAME 
-					+ " (ID INT PRIMARY KEY     NOT NULL,"
+					+ " (ID SERIAL ,"
 					+ " Event           TEXT    NOT NULL, "
 					+ " Category            INT     NOT NULL, "
 					+ " ToDoIntervals        TEXT, " 
@@ -74,7 +99,6 @@ public class TaskTableManager {
 				stmt.close();
 				connection.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -88,10 +112,9 @@ public class TaskTableManager {
 			connection = getConnection();
 			pStmt = connection.createStatement();
 			String sql = "INSERT INTO " + TASK_TABLE_NAME + 
-							" (ID,EVENT,Category,ToDoIntervals,ScheduledInterval,Scheduled,Priority) "
+							" (EVENT,Category,ToDoIntervals,ScheduledInterval,Scheduled,Priority) "
 							+ "VALUES ("
-							+ task.getId()
-							+ ", '"
+							+ "'"
 							+ task.getEvent()
 							+ "', "
 							+ task.getCategory().ordinal()
