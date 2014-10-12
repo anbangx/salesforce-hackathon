@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class LoadTasksServlet extends HttpServlet
+public class LoadUnscheduledServlet extends HttpServlet
 {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        request.getRequestDispatcher("/WEB-INF/tasks.jsp").forward(request, response);
+        String message = "Hello World";
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
     }
 }

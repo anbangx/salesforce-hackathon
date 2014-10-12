@@ -24,6 +24,7 @@ body {
 </head>
 
 <body>
+${message}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -68,7 +69,6 @@ body {
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <!-- <script src="js/jquery-1.11.1.min.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="js/tasks.js"></script>
 
 </body>
 </html>
