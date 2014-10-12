@@ -41,8 +41,8 @@
         <servlet-class>controller.LoadScheduledServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoadUnscheduled</servlet-name>
-        <url-pattern>/unscheduled</url-pattern>
+        <servlet-name>LoadScheduled</servlet-name>
+        <url-pattern>/scheduled</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

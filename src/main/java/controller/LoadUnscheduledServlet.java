@@ -12,6 +12,6 @@ public class LoadUnscheduledServlet extends HttpServlet
     {
         String message = "Hello World";
         request.setAttribute("message", message);
-        request.getRequestDispatcher("/scheduled.jsp").forward(request, response);
+        request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
     }
 }
