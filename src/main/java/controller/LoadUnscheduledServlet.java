@@ -1,5 +1,6 @@
 package controller;
 
+import datamodel.Interval;
 import datamodel.Task;
 import tablemanager.TaskTableManager;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LoadUnscheduledServlet extends HttpServlet
 {
@@ -19,8 +21,19 @@ public class LoadUnscheduledServlet extends HttpServlet
 
         ArrayList<Task> tasks = dbManager.readUnscheduledTasks();
 
-        for (int i = 0; i < tasks.size(); i++) {
-            listhtml += "<p> " + tasks.get(i).getEvent() + " </p>"
+        //for (int i = 0; i < tasks.size(); i++) {
+        //    listhtml += "<p>" + tasks.get(i).getEvent() + " " + tasks.get()
+        //             + "</p>"
+        //             + "<hr>";
+        //}
+
+        for (Task t : tasks) {
+            Interval interval = t.getTodoIntervals().get(0);
+            listhtml += "<p>"
+                     + t.getEvent() + " " + t.getPriority()
+                     + " " + new Date(interval.start * 1000)
+                     + " " + new Date(interval.end * 1000)
+                     + "</p>"
                      + "<hr>";
         }
 
