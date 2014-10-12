@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,19 +22,22 @@ public class LoadScheduledServlet extends HttpServlet
 
         ArrayList<Task> tasks = dbManager.readScheduledTasks();
 
-        //for (int i = 0; i < tasks.size(); i++) {
-        //    listhtml += "<p> " + tasks.get(i).getEvent() + " </p>"
-        //            + "<hr>";
-//        }
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mma");
 
         for (Task t : tasks) {
             Interval interval = t.getScheduledInterval();
-            listhtml += "<p>"
-                    + t.getEvent() + " " + t.getPriority()
-                    + " " + new Date(interval.start * 1000)
-                    + " " + new Date(interval.end * 1000)
-                    + "</p>"
-                    + "<hr>";
+            Date start = new Date(interval.start);
+            Date end = new Date(interval.end);
+
+            listhtml += " <div class=\"panel panel-default\">\n" +
+                    "  <div class=\"panel-heading\">\n" +
+                    "    <h3 class=\"panel-title\">" +  t.getEvent() +"</h3>\n" +
+                    "  </div>\n" +
+                    "  <div class=\"panel-body\">\n" +
+                        formatter.format(start) + " " + formatter.format(end) +
+                    "  </div>\n" +
+                    "</div>  ";
+
         }
 
         request.setAttribute("scheduledtasks", listhtml);
