@@ -24,21 +24,22 @@ public class LoadScheduledServlet extends HttpServlet
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mma");
 
+        listhtml = "<div class=\"list-group\">\n" +
+                   "<a href=\"#\" class=\"list-group-item\">";
+
         for (Task t : tasks) {
             Interval interval = t.getScheduledInterval();
             Date start = new Date(interval.start);
             Date end = new Date(interval.end);
 
-            listhtml += " <div class=\"panel panel-default\">\n" +
-                    "  <div class=\"panel-heading\">\n" +
-                    "    <h3 class=\"panel-title\">" +  t.getEvent() +"</h3>\n" +
-                    "  </div>\n" +
-                    "  <div class=\"panel-body\">\n" +
-                        formatter.format(start) + " " + formatter.format(end) +
-                    "  </div>\n" +
-                    "</div>  ";
-
+            listhtml += "<h4 class=\"list-group-item-heading\">" + t.getEvent() + "</h4>"
+                     + "<p class=\"list-group-item-text\">"
+                     + "start date: " + formatter.format(start)
+                     + "end date: " + formatter.format(end)
+                     + "</p>";
         }
+
+        listhtml += "</a></div>";
 
         request.setAttribute("scheduledtasks", listhtml);
         request.getRequestDispatcher("/scheduled.jsp").forward(request, response);

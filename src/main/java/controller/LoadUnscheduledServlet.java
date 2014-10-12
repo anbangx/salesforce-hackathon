@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,24 +22,24 @@ public class LoadUnscheduledServlet extends HttpServlet
 
         ArrayList<Task> tasks = dbManager.readUnscheduledTasks();
 
-        //for (int i = 0; i < tasks.size(); i++) {
-        //    listhtml += "<p>" + tasks.get(i).getEvent() + " " + tasks.get()
-        //             + "</p>"
-        //             + "<hr>";
-        //}
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mma");
+
+        listhtml = "<div class=\"list-group\">\n" +
+                "<a href=\"#\" class=\"list-group-item\">";
 
         for (Task t : tasks) {
             Interval interval = t.getTodoIntervals().get(0);
-            listhtml += "<p>"
-                     + t.getEvent() + " " + t.getPriority()
-                     + " " + new Date(interval.start * 1000)
-                     + " " + new Date(interval.end * 1000)
-                     + "</p>"
-                     + "<hr>";
+            Date start = new Date(interval.start);
+            Date end = new Date(interval.end);
+
+            listhtml += "<h4 class=\"list-group-item-heading\">" + t.getEvent() + "</h4>"
+                    + "<p class=\"list-group-item-text\">"
+                    + "start date: " + formatter.format(start)
+                    + "end date: " + formatter.format(end)
+                    + "</p>";
         }
 
-        response.getWriter().println(tasks.size());
-        response.getWriter().println(listhtml);
+        listhtml += "</a></div>";
 
         request.setAttribute("unscheduledtasks", listhtml);
         request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
