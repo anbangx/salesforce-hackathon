@@ -2,20 +2,69 @@ package data;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Task {
-	
+	public enum CATEGORY {
+		COMPANY,
+		FAMILY,
+		OTHER
+	}
+
 	private int id;
 	private String event;
-	private String catogory;
+	private CATEGORY catogory;
 	private ArrayList<Date> startTimes;
 	private long duringTime;
 	private Date finalStartTime;
+	private int priority;
 	private boolean scheduled;
 	
 	public Task(){
 		scheduled = false;
 	}
+	
+	public Task(int i, String e, CATEGORY c, ArrayList<Date> ds, long d, Date date, boolean s) {
+		this.id = i;
+		this.event = e;
+		this.catogory = c;
+		this.startTimes = ds;
+		this.duringTime = d;
+		this.finalStartTime = date;
+		this.scheduled = s;
+	}
+	
+	public static Comparator<Task> PriorityComparator = new Comparator<Task>() {
+		
+		public int compare(Task task1, Task task2) {
+			//ascending order
+			return task1.getPriority() - task2.getPriority();
+		}
+		
+	};
+	
+	public static Comparator<Task> DuringTimeComparator = new Comparator<Task>() {
+		
+		public int compare(Task task1, Task task2) {
+			long duringTime1 = task1.getDuringTime();
+			long duringTime2 = task2.getDuringTime();
+			if(duringTime1 > duringTime2)
+				return 1;
+			else if(duringTime1 < duringTime2)
+				return -1;
+			else
+				return 0;
+		}
+		
+	};
+	
+	public static Comparator<Task> startTimeComparator = new Comparator<Task>() {
+		
+		public int compare(Task task1, Task task2) {
+			return 0;
+		}
+		
+	};
 
 	public int getId() {
 		return id;
@@ -33,11 +82,11 @@ public class Task {
 		this.event = event;
 	}
 
-	public String getCatogory() {
+	public CATEGORY getCatogory() {
 		return catogory;
 	}
 
-	public void setCatogory(String catogory) {
+	public void setCatogory(CATEGORY catogory) {
 		this.catogory = catogory;
 	}
 
@@ -63,6 +112,14 @@ public class Task {
 
 	public void setFinalStartTime(Date finalStartTime) {
 		this.finalStartTime = finalStartTime;
+	}
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 
 	public boolean isScheduled() {
