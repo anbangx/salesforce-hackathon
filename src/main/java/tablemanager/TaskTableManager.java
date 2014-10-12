@@ -148,7 +148,7 @@ public class TaskTableManager {
 				
 				String toDoIntervals = rs.getString("ToDoIntervals");
 				ArrayList<Interval> inters = new ArrayList<Interval>();
-				String[] ins = toDoIntervals.substring(1, toDoIntervals.length() - 2).split(",");
+				String[] ins = toDoIntervals.substring(1, toDoIntervals.length() - 1).split(",");
 				for(String in : ins) {
 					String[] parts = in.trim().split(":");
 					Interval scheInterval = new Interval(Long.parseLong(parts[0]), Long.parseLong(parts[1]));

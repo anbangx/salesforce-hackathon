@@ -26,7 +26,7 @@ public class HelloServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		response.getWriter().print("I am here");
 		showDatabase(request, response);
 		// response.setContentType("text/html");
 		// response.setStatus(HttpServletResponse.SC_OK);
@@ -42,18 +42,18 @@ public class HelloServlet extends HttpServlet {
 
 	private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
 		TaskTableManager taskManager = TaskTableManager.getInstance();
 		taskManager.createTable();
-		
 		
 		ArrayList<Interval> ds = new ArrayList<Interval>();
 		ds.add(new Interval(5, 9));
 		Task t = new Task(101, "SMS", CATEGORY.FAMILY, ds, new Interval(1,3), true, 1);
-		ArrayList<Task> tasks = taskManager.readTaskTable();
+		taskManager.writeTaskToDB(t);
 		
+		ArrayList<Task> tasks = taskManager.readTaskTable();
 		for(Task task : tasks) {
-			System.out.println(task.toString());
+			//System.out.println(task.toString());
+			resp.getWriter().println(task.toString());
 		}
 		
 	//	try {
