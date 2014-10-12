@@ -28,6 +28,6 @@ public class LoadUnscheduledServlet extends HttpServlet
         response.getWriter().println(listhtml);
 
         request.setAttribute("unscheduledtasks", listhtml);
-        request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
+        //request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
     }
 }

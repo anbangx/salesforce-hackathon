@@ -68,7 +68,7 @@ public class SubmitServlet extends HttpServlet
         Task newTask = new Task(rng.nextInt(), event, category, intervals, new Interval(0,0), false, priority);
 
         TaskTableManager dbManager = TaskTableManager.getInstance();
-        dbManager.createTable();
+        //dbManager.createTable();
         dbManager.writeTaskToDB(newTask);
 
         request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
