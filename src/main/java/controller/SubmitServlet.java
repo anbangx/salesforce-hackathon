@@ -71,6 +71,6 @@ public class SubmitServlet extends HttpServlet
         //dbManager.createTable();
         dbManager.writeTaskToDB(newTask);
 
-        request.getRequestDispatcher("/unscheduled.jsp").forward(request, response);
+        request.getRequestDispatcher("/unscheduled").forward(request, response);
     }
 }
