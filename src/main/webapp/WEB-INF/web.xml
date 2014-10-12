@@ -22,11 +22,6 @@
         <url-pattern>/echo</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>Hello</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
-
     <servlet>
         <servlet-name>LoadUnscheduled</servlet-name>
         <servlet-class>controller.LoadUnscheduledServlet</servlet-class>
@@ -52,6 +47,15 @@
     <servlet-mapping>
         <servlet-name>Scheduler</servlet-name>
         <url-pattern>/scheduler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Submit</servlet-name>
+        <servlet-class>controller.SubmitServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Submit</servlet-name>
+        <url-pattern>/submit</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

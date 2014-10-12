@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class Task {
+
 	public enum CATEGORY {
 		COMPANY,
 		FAMILY,
@@ -18,23 +19,35 @@ public class Task {
 	
 	private int id;
 	private String event;
-	private CATEGORY catogory;
+	private CATEGORY category;
 	private ArrayList<Interval> todoIntervals;
 	private Interval scheduledInterval;
-	private long duringTime;
 	private boolean scheduled;
 	private int priority;
+	
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID = " + id + "\n");
+		sb.append("EVENT = " + event + "\n");
+		sb.append("CATEGORY = " + category + "\n");
+		sb.append("todoIntervals = " + todoIntervals.toString() + "\n");
+		sb.append("scheduledInterval = " + scheduledInterval.toString() + "\n");
+		sb.append("scheduled = " + scheduled + "\n");
+		sb.append("priority = " + priority + "\n");
+		
+		return sb.toString();
+	}
 	
 	public Task(){
 		scheduled = false;
 	}
 	
-	public Task(int i, String e, CATEGORY c, ArrayList<Interval> ds, Interval in, long d, boolean s, int p) {
+	public Task(int i, String e, CATEGORY c, ArrayList<Interval> ds, Interval in, boolean s, int p) {
 		this.id = i;
 		this.event = e;
-		this.catogory = c;
+		this.category = c;
 		this.todoIntervals = ds;
-		this.duringTime = d;
 		this.scheduledInterval = in;
 		this.scheduled = s;
 		this.priority = p;
@@ -85,6 +98,14 @@ public class Task {
 		};
 	}
 	
+	public static Comparator<Task> startTimeComparator = new Comparator<Task>() {
+		
+		public int compare(Task task1, Task task2) {
+			return 0;
+		}
+		
+	};
+
 	
 	public int getId() {
 		return id;
@@ -103,11 +124,11 @@ public class Task {
 	}
 
 	public CATEGORY getCatogory() {
-		return catogory;
+		return category;
 	}
 
 	public void setCatogory(CATEGORY catogory) {
-		this.catogory = catogory;
+		this.category = catogory;
 	}
 
 	public ArrayList<Interval> getTodoIntervals() {
@@ -116,14 +137,6 @@ public class Task {
 
 	public void setTodoIntervals(ArrayList<Interval> todoIntervals) {
 		this.todoIntervals = todoIntervals;
-	}
-
-	public long getDuringTime() {
-		return duringTime;
-	}
-
-	public void setDuringTime(long duringTime) {
-		this.duringTime = duringTime;
 	}
 
 	public Interval getScheduledInterval() {

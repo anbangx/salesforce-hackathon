@@ -39,28 +39,47 @@ body {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li><a href="unscheduled">Unscheduled Tasks</a></li>
-          <li><a href="scheduled">Scheduled Tasks</a></li>
-          <li class="active"><a href="createtask.html">Create Task</a></li>
+        <li><a href="unscheduled">Unscheduled Tasks</a></li>
+        <li><a href="scheduled">Scheduled Tasks</a></li>
+        <li class="active"><a href="createtask.html">Create Task</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
 <div class="container-fluid">
-  <form role="form" action="/hello" method="get">
+  <form role="form" action="/submit" method="get">
     <div class="form-group">
       <label for="task">Task</label>
       <input type="text" class="form-control" id="task" placeholder="Enter Task" name="task">
     </div>
     <div class="form-group">
-      <label for="startdate">Start Date</label>
-      <input type="date" class="form-control" id="startdate" placeholder="Start Date" name="startdate">
+      <label>Category</label>
+      <select class="form-control" name="category">
+        <option value="family">Family</option>
+        <option value="work">Work</option>
+        <option value="sports">Sports</option>
+        <option value="other">Other</option>
+      </select>
     </div>
-    <div class="form-group">
-      <label for="duedate">Due Date</label>
-      <input type="date" class="form-control" id="duedate" placeholder="Due Date" name="duedate">
+    <hr>
+    <div class="form-group" id="requestedTimes">
+      <label>Times Requested</label>
+      <div class="form-inline" >
+        <label for="startdate">Start Date</label>
+        <input type="date" class="form-control" id="startdate" placeholder="Start Date" name="startdate1">
+        <label for="starttime">Start Time</label>
+        <input type="time" class="form-control" id="startdate" placeholder="Start Time" name="starttime1">
+      </div>
+      <div class="form-inline" >
+        <label for="enddate">End  Date</label>
+        <input type="date" class="form-control" id="endtime" placeholder="End Date" name="enddate1">
+        <label for="endtime">End  Time</label>
+        <input type="time" class="form-control" id="endtime" placeholder="End Time" name="endtime1">
+      </div>
     </div>
+    <button type="button" class="btn btn-default" id="addOpt">Add more options</button>
+    <hr>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 
@@ -78,6 +97,28 @@ body {
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <!-- <script src="js/jquery-1.11.1.min.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+    var i = 1;
+    $("#addOpt").click( function() {
+      i = i + 1;
+      $("#requestedTimes").append('<hr>'
+        + '<div class="form-inline" >'
+        + '<label for="startdate">Start Date</label>'
+        + '<input type="date" class="form-control" id="startdate" placeholder="Start Date" name="startdate' + i + '">'
+        + '<label for="starttime">Start Time</label>'
+        + '<input type="time" class="form-control" id="startdate" placeholder="Start Time" name="starttime' + i + '">'
+        + '</div>'
+        + '<div class="form-inline" >'
+        + '<label for="enddate">End  Date</label>'
+        + '<input type="date" class="form-control" id="endtime" placeholder="End Date" name="enddate' + i + '">'
+        + '<label for="endtime">End  Time</label>'
+        + '<input type="time" class="form-control" id="endtime" placeholder="End Time" name="endtime' + i + '">'
+        + '</div>' );
+      });
+    });
+</script>
 
 </body>
 </html>
