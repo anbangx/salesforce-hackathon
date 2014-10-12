@@ -31,7 +31,7 @@ public class SubmitServlet extends HttpServlet
         Task.CATEGORY category = Task.CATEGORY.valueOf(categoryStr);
 
         // Parse string to date to long
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         int intervalNum = 1;
         while (request.getParameter("startdate" + intervalNum) != null) {
             response.getWriter().println(request.getParameter("startdate" + intervalNum));
