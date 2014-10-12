@@ -1,13 +1,17 @@
 package tablemanager;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import datamodel.Interval;
 import datamodel.Task;
@@ -54,7 +58,7 @@ public class TaskTableManager {
 			sql = "CREATE TABLE " + TASK_TABLE_NAME 
 					+ " (ID INT PRIMARY KEY     NOT NULL,"
 					+ " Event           TEXT    NOT NULL, "
-					+ " Catogory            INT     NOT NULL, "
+					+ " Category            INT     NOT NULL, "
 					+ " ToDoIntervals        TEXT, " 
 					+ " ScheduledInterval         TEXT,"
 					+ " Scheduled				boolean,"
@@ -84,13 +88,13 @@ public class TaskTableManager {
 			connection = getConnection();
 			pStmt = connection.createStatement();
 			String sql = "INSERT INTO " + TASK_TABLE_NAME + 
-							" (ID,EVENT,Catogory,ToDoIntervals,ScheduledInterval,Scheduled,Priority) "
+							" (ID,EVENT,Category,ToDoIntervals,ScheduledInterval,Scheduled,Priority) "
 							+ "VALUES ("
 							+ task.getId()
 							+ ", '"
 							+ task.getEvent()
 							+ "', "
-							+ task.getCatogory().ordinal()
+							+ task.getCategory().ordinal()
 							+ ", '"
 							+ task.getTodoIntervals().toString()
 							+ "', '"
@@ -131,7 +135,7 @@ public class TaskTableManager {
 			while(rs.next()) { //(ID,EVENT,Catogory,ToDoIntervals,ScheduledInterval,Scheduled,Priority)
 				int id = rs.getInt("ID");
 				String event = rs.getString("EVENT");
-				int category = rs.getInt("Catogory");
+				int category = rs.getInt("Category");
 				CATEGORY cate = CATEGORY.COMPANY;
 				switch(category) {
 				case 1:
@@ -145,6 +149,7 @@ public class TaskTableManager {
 				default:
 					break;
 				}
+				cate = CATEGORY.values()[category];
 				
 				String toDoIntervals = rs.getString("ToDoIntervals");
 				ArrayList<Interval> inters = new ArrayList<Interval>();
@@ -164,7 +169,7 @@ public class TaskTableManager {
 				Task t = new Task();
 				t.setId(id);
 				t.setEvent(event);
-				t.setCatogory(cate);
+				t.setCategory(cate);
 				t.setTodoIntervals(inters);
 				t.setScheduledInterval(scheInterval);
 				t.setScheduled(scheduled);
@@ -183,8 +188,48 @@ public class TaskTableManager {
 		return tasks;
 	}
 	
+	public int updateTasks(ArrayList<Task> tasks) {
+		Connection conn = null;
+		Statement stmt = null;
+		int rowNum = 0;
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			
+			String sql = "";	
+			
+			for(Task t : tasks) {//ID,EVENT,Catogory,ToDoIntervals,ScheduledInterval,Scheduled,Priority
+				sql = "update TASK "
+					+ " set EVENT = '" + t.getEvent()
+					+ "', CATEGORY = " + t.getCategory().ordinal()
+					+ ", ToDoIntervals = '" + t.getTodoIntervals().toString()
+					+ "', ScheduledInterval = '" + t.getScheduledInterval().toString()
+					+ "', Scheduled = '" + t.isScheduled()
+					+ "', Priority = " + t.getPriority()
+					+ " where ID = " + t.getId() + " ;";		
+			
+				rowNum += stmt.executeUpdate(sql);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return rowNum;
+	}
+	
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// 
 
 	}
 

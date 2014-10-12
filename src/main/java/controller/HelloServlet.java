@@ -26,7 +26,7 @@ public class HelloServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().print("I am here");
+		response.getWriter().println("I am here");
 		showDatabase(request, response);
 		// response.setContentType("text/html");
 		// response.setStatus(HttpServletResponse.SC_OK);
@@ -47,14 +47,33 @@ public class HelloServlet extends HttpServlet {
 		
 		ArrayList<Interval> ds = new ArrayList<Interval>();
 		ds.add(new Interval(5, 9));
-		Task t = new Task(101, "SMS", CATEGORY.FAMILY, ds, new Interval(1,3), true, 1);
-		taskManager.writeTaskToDB(t);
+		Task t1 = new Task(101, "SMS", CATEGORY.FAMILY, ds, new Interval(1,3), true, 1);
+		Task t2 = new Task(102, "TDS", CATEGORY.OTHER, ds, new Interval(7,8), false, 2);
+		taskManager.writeTaskToDB(t1);
+		taskManager.writeTaskToDB(t2);
 		
 		ArrayList<Task> tasks = taskManager.readTaskTable();
 		for(Task task : tasks) {
 			//System.out.println(task.toString());
 			resp.getWriter().println(task.toString());
 		}
+		
+		resp.getWriter().println();
+		resp.getWriter().println();
+		
+		t2.setCategory(CATEGORY.COMPANY);
+		t2.setEvent("BYE");
+		ArrayList<Task> ls = new ArrayList<Task>();
+		ls.add(t2);
+		int rn = -10;
+		rn = taskManager.updateTasks(ls);
+		resp.getWriter().println("!!!! row num updated = " + rn);
+		tasks = taskManager.readTaskTable();
+		for(Task task : tasks) {
+			resp.getWriter().println(task.toString());
+		}		
+		
+		
 		
 	//	try {
 			//connection = getConnection();
