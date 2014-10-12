@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Task Scheduler</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Task list for work">
+<meta name="author" content="Wenbo Wang">
+
+<!-- Styles -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<style type="text/css">
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+</style>
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+${message}
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Task Scheduler</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Tasks</a></li>
+        <li><a href="createtask.html">Create Task</a></li>
+        <li><a href="#">Schedule Tasks</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+
+  <p>
+  Task 1
+  </p>
+
+  <hr>
+
+  <footer>
+    <p>&copy; Wenbo Wang 2014</p>
+  </footer>
+
+</div><!--/.fluid-container-->
+
+<!-- Javascript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<!-- <script src="js/jquery-1.11.1.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
