@@ -22,7 +22,7 @@ public class LoadScheduledServlet extends HttpServlet
 
         ArrayList<Task> tasks = dbManager.readScheduledTasks();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mma");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy hh:mma");
 
         for (Task t : tasks) {
             Interval interval = t.getScheduledInterval();
