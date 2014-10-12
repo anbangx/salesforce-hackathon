@@ -26,7 +26,7 @@ public class HelloServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().print("I am here");
+		response.getWriter().println("I am here");
 		showDatabase(request, response);
 		// response.setContentType("text/html");
 		// response.setStatus(HttpServletResponse.SC_OK);
@@ -47,14 +47,36 @@ public class HelloServlet extends HttpServlet {
 		
 		ArrayList<Interval> ds = new ArrayList<Interval>();
 		ds.add(new Interval(5, 9));
-		Task t = new Task(101, "SMS", CATEGORY.FAMILY, ds, new Interval(1,3), true, 1);
-		taskManager.writeTaskToDB(t);
+		Task t1 = new Task(101, "SMS", CATEGORY.FAMILY, ds, new Interval(1,3), true, 1);
+		Task t2 = new Task(102, "TDS", CATEGORY.OTHER, ds, new Interval(7,8), false, 2);
+		Task t3 = new Task(109, "PBS", CATEGORY.OTHER, ds, new Interval(17,32), true, 4);
+		taskManager.writeTaskToDB(t1);
+		taskManager.writeTaskToDB(t2);
+		taskManager.writeTaskToDB(t3);
 		
-		ArrayList<Task> tasks = taskManager.readTaskTable();
+		ArrayList<Task> tasks = taskManager.readAllTasks();
 		for(Task task : tasks) {
-			//System.out.println(task.toString());
 			resp.getWriter().println(task.toString());
 		}
+		
+		resp.getWriter().println();
+		resp.getWriter().println();
+		
+		tasks = taskManager.readUnscheduledTasks();
+		tasks.get(0).setCategory(CATEGORY.COMPANY);
+		tasks.get(0).setEvent("BYE");
+		
+		ArrayList<Task> ls = new ArrayList<Task>();
+		ls.add(tasks.get(0));
+		int rn = -10;
+		rn = taskManager.updateTasks(ls);
+		resp.getWriter().println("!!!! row num updated = " + rn);
+		tasks = taskManager.readAllTasks();
+		for(Task task : tasks) {
+			resp.getWriter().println(task.toString());
+		}		
+		
+		
 		
 	//	try {
 			//connection = getConnection();
