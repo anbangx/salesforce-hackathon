@@ -22,7 +22,6 @@ body {
 </head>
 
 <body>
-${message}
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,9 +48,7 @@ ${message}
 
 <div class="container-fluid">
 
-  <p>
-  Task 1
-  </p>
+  ${Scheduledtasks}
 
   <hr>
 
