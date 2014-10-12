@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datamodel.Interval;
 import datamodel.Task;
 import datamodel.Task.CATEGORY;
 
@@ -32,11 +33,11 @@ public class HelloServlet extends HttpServlet {
 				+ " (ID INT PRIMARY KEY     NOT NULL,"
 				+ " Event           TEXT    NOT NULL, "
 				+ " Catogory            TEXT     NOT NULL, "
-				+ " StartTimes        TEXT, " 
-				+ " DuringTime         numeric,"
-				+ " FinalStartTime			numeric," 
+				+ " ToDoIntervals        TEXT, " 
+				+ " ScheduledInterval         TEXT,"
+				+ " DuringTime			numeric," 
 				+ " Scheduled				TEXT,"
-				+ " Priority		TEXT"
+				+ " Priority		INT"
 				+ ");";
 		
 		Statement stmt = connection.createStatement();
@@ -131,22 +132,22 @@ public class HelloServlet extends HttpServlet {
 			
 			createTasksTable();
 			StringBuffer sb = new StringBuffer();
-//			Task t = new Task(100, "HIT", CATEGORY.COMPANY, new ArrayList<Long>(), 1000L, 2313424L, true, 2);
-//			int num  = flushTaskToDB(t);
-			int num = 0;
+			Task t = new Task(100, "HIT", CATEGORY.COMPANY, new ArrayList<Interval>(), new Interval(4,8), 2313424L, true, 2);
+			int num  = flushTaskToDB(t);
+			//int num = 0;
 			sb.append("\n" + " !!!insert " + num + " rows here" + "\n");
 			rs = stmt.executeQuery("SELECT * FROM TASK;");
-			while (rs.next()) { //ID,EVENT,Catogory,StartTimes,DuringTime,FinalStartTime,Scheduled
+			while (rs.next()) { //(ID,EVENT,Catogory,ToDoIntervals,ScheduledInterval,DuringTime,Scheduled,Priority)
 				int id = rs.getInt("ID");
 				String name = rs.getString("EVENT");
 				String category = rs.getString("Catogory");
-				String startTimes = rs.getString("StartTimes");
+				String scheduled = rs.getString("Scheduled");
 				long duringTime = rs.getLong("DuringTime");
 				sb.append("ID = " + id + "\n");
 				sb.append("NAME = " + name + "\n");
 				sb.append("category = " + category + "\n");
-				sb.append("startTimes = " + startTimes + "\n");
-				sb.append("duringTime = " + duringTime + "\n");
+				sb.append("Scheduled = " + scheduled + "\n");
+	
 				sb.append("\n");
 			}
 			
@@ -182,7 +183,7 @@ public class HelloServlet extends HttpServlet {
 			connection = getConnection();
 			pStmt = connection.createStatement();
 			String sql = "INSERT INTO " + TASK_TABLE_NAME + 
-							" (ID,EVENT,Catogory,StartTimes,DuringTime,FinalStartTime,Scheduled,Priority) "
+							" (ID,EVENT,Catogory,ToDoIntervals,ScheduledInterval,DuringTime,Scheduled,Priority) "
 							+ "VALUES ("
 							+ task.getId()
 							+ ", '"
@@ -190,16 +191,16 @@ public class HelloServlet extends HttpServlet {
 							+ "', '"
 							+ task.getCatogory().name()
 							+ "', '"
-//							+ task.getStartTimes().toString()
+							+ task.getTodoIntervals().toString()
+							+ "', '"
+							+ task.getScheduledInterval().toString()
 							+ "', "
 							+ task.getDuringTime()
-							+ ", "
-							+ task.getFinalStartTime()
 							+ ", '"
 							+ task.isScheduled()
-							+ "' ,'"
+							+ "' ,"
 							+ task.getPriority()
-							+ "');";
+							+ ");";
 				r = pStmt.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();

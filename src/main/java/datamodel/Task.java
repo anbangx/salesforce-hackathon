@@ -20,8 +20,8 @@ public class Task {
 	private String event;
 	private CATEGORY catogory;
 	private ArrayList<Interval> todoIntervals;
-	private long duringTime;
 	private Interval scheduledInterval;
+	private long duringTime;
 	private boolean scheduled;
 	private int priority;
 	
@@ -29,14 +29,15 @@ public class Task {
 		scheduled = false;
 	}
 	
-	public Task(int i, String e, CATEGORY c, ArrayList<Interval> ds, long d, Long date, boolean s, int p) {
+	public Task(int i, String e, CATEGORY c, ArrayList<Interval> ds, Interval in, long d, boolean s, int p) {
 		this.id = i;
 		this.event = e;
 		this.catogory = c;
 		this.todoIntervals = ds;
 		this.duringTime = d;
-//		this.finalStartTime = date;
+		this.scheduledInterval = in;
 		this.scheduled = s;
+		this.priority = p;
 	}
 	
 	public static class Comparators {
@@ -145,4 +146,13 @@ public class Task {
 		this.scheduled = scheduled;
 	}
 	
+	
+	public static void main(String[] args) {
+		ArrayList<Interval> inters = new ArrayList<Interval>();
+		inters.add(new Interval(0, 1));
+		inters.add(new Interval(2, 3));
+		inters.add(new Interval(5, 9));
+		
+		System.out.println(inters);
+	}
 }
