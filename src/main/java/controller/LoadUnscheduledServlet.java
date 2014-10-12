@@ -30,14 +30,10 @@ public class LoadUnscheduledServlet extends HttpServlet
             listhtml += " <div class=\"panel panel-default\">\n" +
                     "  <div class=\"panel-heading\">\n" +
                     "  <div class=\"col-xs-6 col-md-6\">" +
-                    "    <h3 class=\"panel-title\">" +
                     t.getEvent() +
-                    "</h3>" +
                     " </div>" +
                     "  <div class=\"col-xs-6 col-md-6\">" +
-                    "    <h3 class=\"panel-title\">" +
                     "Priotity " + t.getPriority() +
-                    "</h3>" +
                     " </div>";
             for (Interval interval : intervals) {
                 Date start = new Date(interval.start);
