@@ -19,9 +19,9 @@ public class Task {
 	private int id;
 	private String event;
 	private CATEGORY catogory;
-	private ArrayList<Long> startTimes;
+	private ArrayList<Interval> todoIntervals;
 	private long duringTime;
-	private long finalStartTime;
+	private Interval scheduledInterval;
 	private boolean scheduled;
 	private int priority;
 	
@@ -29,13 +29,13 @@ public class Task {
 		scheduled = false;
 	}
 	
-	public Task(int i, String e, CATEGORY c, ArrayList<Long> ds, long d, Long date, boolean s, int p) {
+	public Task(int i, String e, CATEGORY c, ArrayList<Interval> ds, long d, Long date, boolean s, int p) {
 		this.id = i;
 		this.event = e;
 		this.catogory = c;
-		this.startTimes = ds;
+		this.todoIntervals = ds;
 		this.duringTime = d;
-		this.finalStartTime = date;
+//		this.finalStartTime = date;
 		this.scheduled = s;
 	}
 	
@@ -95,12 +95,12 @@ public class Task {
 		this.catogory = catogory;
 	}
 
-	public ArrayList<Long> getStartTimes() {
-		return startTimes;
+	public ArrayList<Interval> getTodoIntervals() {
+		return todoIntervals;
 	}
 
-	public void setStartTimes(ArrayList<Long> startTimes) {
-		this.startTimes = startTimes;
+	public void setTodoIntervals(ArrayList<Interval> todoIntervals) {
+		this.todoIntervals = todoIntervals;
 	}
 
 	public long getDuringTime() {
@@ -111,12 +111,12 @@ public class Task {
 		this.duringTime = duringTime;
 	}
 
-	public Long getFinalStartTime() {
-		return finalStartTime;
+	public Interval getScheduledInterval() {
+		return scheduledInterval;
 	}
 
-	public void setFinalStartTime(Long finalStartTime) {
-		this.finalStartTime = finalStartTime;
+	public void setScheduledInterval(Interval scheduledInterval) {
+		this.scheduledInterval = scheduledInterval;
 	}
 
 	public int getPriority() {

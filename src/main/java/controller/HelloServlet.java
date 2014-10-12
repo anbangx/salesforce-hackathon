@@ -131,9 +131,9 @@ public class HelloServlet extends HttpServlet {
 			
 			createTasksTable();
 			StringBuffer sb = new StringBuffer();
-			Task t = new Task(100, "HIT", CATEGORY.COMPANY, new ArrayList<Long>(), 1000L, 2313424L, true, 2);
-			int num  = flushTaskToDB(t);
-			
+//			Task t = new Task(100, "HIT", CATEGORY.COMPANY, new ArrayList<Long>(), 1000L, 2313424L, true, 2);
+//			int num  = flushTaskToDB(t);
+			int num = 0;
 			sb.append("\n" + " !!!insert " + num + " rows here" + "\n");
 			rs = stmt.executeQuery("SELECT * FROM TASK;");
 			while (rs.next()) { //ID,EVENT,Catogory,StartTimes,DuringTime,FinalStartTime,Scheduled
@@ -190,7 +190,7 @@ public class HelloServlet extends HttpServlet {
 							+ "', '"
 							+ task.getCatogory().name()
 							+ "', '"
-							+ task.getStartTimes().toString()
+//							+ task.getStartTimes().toString()
 							+ "', "
 							+ task.getDuringTime()
 							+ ", "
