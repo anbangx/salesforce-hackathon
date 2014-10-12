@@ -31,14 +31,21 @@ public class LoadScheduledServlet extends HttpServlet
 
             listhtml += " <div class=\"panel panel-default\">\n" +
                     "  <div class=\"panel-heading\">\n" +
-                    "    <h3 class=\"panel-title\">" +  t.getEvent() +"</h3>\n" +
+                    "    <h3 class=\"panel-title\">" +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    t.getEvent() +
+                    " </div>" +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    t.getPriority() +
+                    " </div>" +
+                    " </h3>\n" +
                     "  </div>\n" +
                     "  <div class=\"panel-body\">\n" +
-                    "  <div class=\"col-md-6\">" +
-                    formatter.format(start) +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    "start: " + formatter.format(start) +
                     " </div>" +
-                    "  <div class=\"col-md-6\">" +
-                    formatter.format(end) +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    "end: " + formatter.format(end) +
                     " </div>" +
                     "  </div>\n" +
                     "</div>  ";

@@ -25,23 +25,32 @@ public class LoadUnscheduledServlet extends HttpServlet
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yy hh:mma");
 
         for (Task t : tasks) {
-            Interval interval = t.getTodoIntervals().get(0);
-            Date start = new Date(interval.start);
-            Date end = new Date(interval.end);
+            ArrayList<Interval> intervals = t.getTodoIntervals();
 
             listhtml += " <div class=\"panel panel-default\">\n" +
                     "  <div class=\"panel-heading\">\n" +
-                    "    <h3 class=\"panel-title\">" +  t.getEvent() +"</h3>\n" +
-                    "  </div>\n" +
-                    "  <div class=\"panel-body\">\n" +
-                    "  <div class=\"col-md-6\">" +
-                    formatter.format(start) +
+                    "    <h3 class=\"panel-title\">" +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    t.getEvent() +
                     " </div>" +
-                    "  <div class=\"col-md-6\">" +
-                    formatter.format(end) +
+                    "  <div class=\"col-xs-6 col-md-6\">" +
+                    t.getPriority() +
                     " </div>" +
-                    "  </div>\n" +
-                    "</div>  ";
+                    " </h3>\n";
+            for (Interval interval : intervals) {
+                Date start = new Date(interval.start);
+                Date end = new Date(interval.end);
+                listhtml += "  </div>\n" +
+                        "  <div class=\"panel-body\">\n" +
+                        "  <div class=\"col-xs-6 col-md-6\">" +
+                        "start: " + formatter.format(start) +
+                        " </div>" +
+                        "  <div class=\"col-xs-6 col-md-6\">" +
+                        "end: " + formatter.format(end) +
+                        " </div>" +
+                        "  </div>\n";
+            }
+            listhtml += "</div>";
 
         }
 
